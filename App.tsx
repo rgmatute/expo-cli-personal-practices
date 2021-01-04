@@ -1,14 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, NativeModules } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hola que tal como estais</Text>
+      <Text>hola</Text>
       <StatusBar style="auto" />
+
+      <TouchableOpacity onPress={()=>test()}>
+        <Text>Prueba Native Component</Text>
+      </TouchableOpacity>
     </View>
   );
+}
+
+const test = ()=>{
+  NativeModules.Util.getDeviceName((name:any)=>{
+    console.log(name);
+  });
 }
 
 const styles = StyleSheet.create({
